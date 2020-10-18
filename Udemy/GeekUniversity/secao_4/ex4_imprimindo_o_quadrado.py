@@ -5,3 +5,5 @@ num = float(input('Entre com um numero real: '))
 quadrado = num ** 2
 
 print(f'O quadrado do numero {num} é : {quadrado}')
+
+#fim

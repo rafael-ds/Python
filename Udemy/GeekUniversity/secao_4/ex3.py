@@ -17,3 +17,4 @@ while cont < 3:
 
 soma = sum(nums)
 print(f'A somas dos numeros {nums} é: {soma}')
+#fim
