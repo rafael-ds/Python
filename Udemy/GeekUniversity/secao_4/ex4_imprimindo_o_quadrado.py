@@ -6,4 +6,3 @@ quadrado = num ** 2
 
 print(f'O quadrado do numero {num} é : {quadrado}')
 
-#fim
