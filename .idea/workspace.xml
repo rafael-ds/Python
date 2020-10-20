@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4a150a1-2e08-472c-a6e4-ca3e09149be6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4/ex1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Agenda Telefonica/agenda_telefonica.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,123 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Google Drive/Cursos/Udemy (1)/Python/guppe" />
+  </component>
+  <component name="RunManager" selected="Python.agenda_telefonica">
+    <configuration name="agenda_telefonica" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Agenda Telefonica" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Agenda Telefonica/agenda_telefonica.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ex37_desconto_12porcento" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4/ex37_desconto_12porcento.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ex39_dividindo_premio" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4/ex39_dividindo_premio.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ex40_dias_trabalhados" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Udemy/GeekUniversity/secao_4/ex40_dias_trabalhados.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="jogo_da_forca" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Jogo da forca" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Jogo da forca/jogo_da_forca.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.agenda_telefonica" />
+        <item itemvalue="Python.jogo_da_forca" />
+        <item itemvalue="Python.ex40_dias_trabalhados" />
+        <item itemvalue="Python.ex39_dividindo_premio" />
+        <item itemvalue="Python.ex37_desconto_12porcento" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,5 +178,36 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="418" y="193" key="#Notifications" timestamp="1603044465201">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state x="418" y="193" key="#Notifications/0.0.1360.738@0.0.1360.738" timestamp="1603044465201" />
+    <state x="460" y="124" key="FileChooserDialogImpl" timestamp="1603193435134">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state x="460" y="124" key="FileChooserDialogImpl/0.0.1360.738@0.0.1360.738" timestamp="1603193435134" />
+    <state width="1339" height="184" key="GridCell.Tab.0.bottom" timestamp="1603201681814">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state width="1339" height="184" key="GridCell.Tab.0.bottom/0.0.1360.738@0.0.1360.738" timestamp="1603201681814" />
+    <state width="1339" height="184" key="GridCell.Tab.0.center" timestamp="1603201681814">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state width="1339" height="184" key="GridCell.Tab.0.center/0.0.1360.738@0.0.1360.738" timestamp="1603201681814" />
+    <state width="1339" height="184" key="GridCell.Tab.0.left" timestamp="1603201681814">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state width="1339" height="184" key="GridCell.Tab.0.left/0.0.1360.738@0.0.1360.738" timestamp="1603201681814" />
+    <state width="1339" height="184" key="GridCell.Tab.0.right" timestamp="1603201681814">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state width="1339" height="184" key="GridCell.Tab.0.right/0.0.1360.738@0.0.1360.738" timestamp="1603201681814" />
+    <state x="343" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1603197771732">
+      <screen x="0" y="0" width="1360" height="738" />
+    </state>
+    <state x="343" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1360.738@0.0.1360.738" timestamp="1603197771732" />
   </component>
 </project>
