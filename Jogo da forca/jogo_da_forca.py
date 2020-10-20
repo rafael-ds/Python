@@ -35,7 +35,10 @@ while acertou == False:
         if letras[x] == '-':
             acertou = False
 
-    if enter_letras == sorteio_palavras[i]:
+    # OBS -> Ao entra nessas linhas do codigo a intenção é que a cada letra errada o numero de
+    # tentativas seja - 1, o que realmente acontece, porem tambem as tentativas estão sendo subtraidas
+    # caso a letra estejam certas.
+    if enter_letras == sorteio_palavras:
         tentantiva = tentantiva
     else:
         print(f'Você possui {tentantiva} Tentativas.')
