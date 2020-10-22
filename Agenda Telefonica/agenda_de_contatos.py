@@ -6,7 +6,10 @@ print('=='*20 + ' Agenda Pessoal ' + '=='*20 + '\n')
 
 print('Deseja acessar sua agenda? ')
 
-contatos = []
+contatos = [
+    {'nome': 'rafael silva', 'tel.': 9948799, 'E-mail': 'rafa@gmail.com'},
+    {'nome': 'edna', 'tel.': 88754125, 'E-mail': 'edna@gmail.com'}
+]
 
 acessar = str(input('(s/n):'))
 
@@ -22,8 +25,9 @@ while acessar == 's':
     opc = input('Entre com a opção:')
 
     if opc == '1':
+        print('Meus contatos:')
         for i in range(0, len(contatos)):
-            print(f'Meus contatos: {contatos[i]}')
+            print(contatos[i])
 
     elif opc == '2':
             nome = str(input('Entre com o nome do contato: '))
@@ -35,6 +39,10 @@ while acessar == 's':
 
             time.sleep(1.5)
             print('Contato adicionado com sucesso! \n')
+
+    elif opc == '3':
+        print('Opção em cunstrução.')
+               
 
 if acessar == 'n':
     print('Saindo da agenda...')
