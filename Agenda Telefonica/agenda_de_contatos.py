@@ -8,7 +8,7 @@ print('Deseja acessar sua agenda? ')
 
 contatos = [
     {'nome': 'Mae', 'tel.': 90165634, 'E-mail': 'dinha@gmail.com'},
-    {'nome': 'Mae', 'tel.': 90165634, 'E-mail': 'dinha@gmail.com'}
+    {'nome': 'Raquel', 'tel.': 2254178, 'E-mail': 'nat@gmail.com'}
 ]
 
 acessar = str(input('(s/n):'))
@@ -41,7 +41,24 @@ while acessar == 's':
         print('Contato adicionado com sucesso! \n')
 
     elif opc == '3':
-        print('Opçao desativada.')
+        # Pecorre a lista trazendo a posição do index e o elemento
+        for pos in contatos:
+            print(f'{contatos.index(pos)}: {pos}')
+
+        posicao = int(input('\nEntre com a posição do contato: '))
+        print(f'{posicao}: {contatos[posicao]}')
+
+        alterar = str(input('Deseja alterar esse contato? s/n:\n '))
+
+        if alterar == 's':
+            nome = str(input('Entre com o nome do contato: '))
+            tel = int(input('Entre com o telefone do contato: '))
+            email = str(input('Entre com o e-mail do contato: '))
+
+            contatos[posicao] = {'nome': nome, 'tel.': tel, 'E-mail': email} # altera o contato na posição escolida
+            time.sleep(1.2)
+            print('Contato atualizado com sucesso!\n')
+
 
     elif opc == '4':
         for i in contatos:
