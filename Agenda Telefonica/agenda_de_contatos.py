@@ -46,7 +46,7 @@ while acessar == 's':
     elif opc == '4':
         for i in contatos:
             print(contatos)
-            # Nao encontrando alogica para a remoção 
+            # Nao encontrando alogica para a remoção
 
 if acessar == 'n':
     print('Saindo da agenda...')
