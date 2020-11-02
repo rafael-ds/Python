@@ -23,7 +23,7 @@ while acessar == 's':
             print(contatos[i])
 
     elif opc == '2':
-        nome = str(input('Entre com o nome do contato: '))
+        nome = str(input('Entre com o nome do contato: ').title())
         tel = int(input('Entre com o telefone do contato: '))
         email = str(input('Entre com o e-mail do contato: '))
 
@@ -44,7 +44,7 @@ while acessar == 's':
         alterar = str(input('Deseja alterar esse contato? s/n:\n '))
 
         if alterar == 's':
-            nome = str(input('Entre com o nome do contato: '))
+            nome = str(input('Entre com o nome do contato: ').title())
             tel = int(input('Entre com o telefone do contato: '))
             email = str(input('Entre com o e-mail do contato: '))
 
@@ -53,8 +53,7 @@ while acessar == 's':
             print('Contato atualizado com sucesso!\n')
 
     elif opc == '4':
-        # Erro ao tentar excluir um item da lista
-        # list assignment index out of range
+        # Erro solucionado com a chamada do del
         for pos in contatos:
             print(f'{contatos.index(pos)}: {pos}')
 
@@ -63,8 +62,8 @@ while acessar == 's':
         alterar = str(input('Deseja realmente excluir esse contato? '))
 
         if alterar == 's':
-            for i in range(0, len(contatos)):
-                contatos[i] = contatos.pop(posicao)
+            for i in contatos:
+                del contatos[posicao]
             print(f'{contatos}\nContatos excluido com sucesso!')
 
     else:
