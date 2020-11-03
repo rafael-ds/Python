@@ -41,7 +41,7 @@ def num():
 
     if tentaivas >= 10:
         print(f'Suas tentativas acabaram. Vecê fez {pontuacao} pontos')
-        print(f'O numero sortiado era {n}')
+        print(f'O numero sortiado era {com}')
 
 
 num()
