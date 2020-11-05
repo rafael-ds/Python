@@ -1,12 +1,72 @@
 # Programa de cotrole de estacionamento
 
-vagas_rotativo = []
+vagas_rotativo = ['.']
 cadastros_rotativo = [
     {'placa': '78r56', 'modelo': 'Corsa', 'cor': 'Preto', 'nome_cliente': 'Rafael'},
+    {'placa': '985t3', 'modelo': 'Fusion', 'cor': 'Verde', 'nome_cliente': 'Edna'}
 ]
 
 vips = []
 cadastros_vips = []
+
+
+print('==' * 20 + ' Controle de estacionamento ' + '==' * 20 + '\n')
+
+iniciar_app = str(input('Iniciar programar? s/n: '))
+
+
+def inicia_app():
+    if iniciar_app == 's':
+
+        print('=' * 130)
+        print(' 1 - Entrada |'
+              ' 2 - Saida |'
+              ' 3 - Cadastros Vips |'
+              ' 4 - Cadastros Rotativo |'
+              ' 5 - Vagas Vips |'
+              ' 6 - Vagas Rotativo |'
+              ' 7 - Sair |')
+        print('=' * 130 + '\n')
+
+        opc = str(input('Entre com a opção desejada: '))
+
+        if opc == '1':  # Entrada
+            # tratamedo para verificar se ha vagas no rotativo
+            for vagas in vagas_rotativo:
+                # print(vagas)
+                if vagas == range(1):
+                    print('Não ha vagas')
+                else:
+                    tipo_usuario()
+
+            inicia_app()
+
+        elif opc == '2':  # Saida
+            print('ok')
+            inicia_app()
+
+        elif opc == '3':  # Cadastros Vips
+            inicia_app()
+
+        elif opc == '4':  # Cadastros Rotativo
+            for i in cadastros_rotativo:
+                print(f'{cadastros_rotativo.index(i)} - {i}')
+            inicia_app()
+
+        elif opc == '5':  # Vagas Vips
+            print(vagas_rotativo)
+
+        elif opc == '6':  # Vagas Rotativo
+            # print(vagas_rotativo)
+            for i in vagas_rotativo:
+                print(f'{vagas_rotativo.index(i)} - {i}')
+            inicia_app()
+
+        elif opc == '7':  # Sair
+            print('Saindo do programa.')
+
+    elif iniciar_app == 'n':
+        print('Saindo do programa.')
 
 
 def tipo_usuario():
@@ -14,26 +74,35 @@ def tipo_usuario():
     Função que trata do tipo de usuario: se é vip ou casual
     :return:
     """
-    # usuario = str(input('Usuario vip? s/n: \n'))
-    print(vagas_rotativo)
-    usuario = str(input('\nDigite a placa:\n'))
+    user = str(input('Usuario vip?\ns/n:  '))
+
+    if user == 's':
+        print('Bem vindo vip!')
+    return usuario_rotativo()
+
+
+def usuario_rotativo():
+    """
+    Função que trata do usuario rotativo
+    :return:
+    """
+    for vagas in vagas_rotativo:
+
+    usuario = input('\nDigite a placa:\n')
 
     for lista in range(0, len(cadastros_rotativo)):
-        # print(type(cadastros_rotativo[lista]))
         placa_user = cadastros_rotativo[lista].get('placa')
 
         if usuario == placa_user:
-            # Nao esta add nas vagas_torativo
-            vagas_rotativo.extend(usuario)
-            print(vagas_rotativo)
-            #print(f'Usuarios: {vagas_rotativo}\n')
+            vagas_rotativo.append(usuario)
+            inicia_app()
 
             # Registar a hora de entrada
-        else:
+        elif usuario != placa_user:
             print('Placa não encontrada.\n')
             entrada_rotativo()
-            add_vaga()
-            print(vagas_rotativo)
+            vagas_rotativo.append(usuario)
+            inicia_app()
 
 
 def entrada_rotativo():
@@ -44,12 +113,7 @@ def entrada_rotativo():
         print('Cadastro finalizado.\n')
 
     elif novo == 'n':
-        tipo_usuario()
-    tipo_usuario()
-
-    """if ficha == 's':
-        for clientes in cadastros_rotativo:
-            print(clientes)"""
+        usuario_rotativo()
 
 
 def cadastrar():
@@ -65,20 +129,6 @@ def cadastrar():
     cadastros_rotativo.append({'placa': placa, 'modelo': modelo, 'cor': cor, 'nome_cliente': nome_cliente})
 
 
-def add_vaga():
-    """
-    Função que add o usuario cadastrado as vagas disponivel
-    :return:
-    """
-    for i in cadastros_rotativo:
-        vagas_rotativo.extend(i)
-
-
-tipo_usuario()
-add_vaga()
-print(vagas_rotativo)
-
-"""for i in vagas_rotativo:
-    print(f'{vagas_rotativo.index(i)} - {i}')"""
+inicia_app()
 
 
