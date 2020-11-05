@@ -1,6 +1,6 @@
 # Programa de cotrole de estacionamento
 
-vagas_rotativo = ['.']
+vagas_rotativo = []
 cadastros_rotativo = [
     {'placa': '78r56', 'modelo': 'Corsa', 'cor': 'Preto', 'nome_cliente': 'Rafael'},
     {'placa': '985t3', 'modelo': 'Fusion', 'cor': 'Verde', 'nome_cliente': 'Edna'}
@@ -17,7 +17,7 @@ iniciar_app = str(input('Iniciar programar? s/n: '))
 
 def inicia_app():
     if iniciar_app == 's':
-
+        # Menu de opção
         print('=' * 130)
         print(' 1 - Entrada |'
               ' 2 - Saida |'
@@ -32,13 +32,7 @@ def inicia_app():
 
         if opc == '1':  # Entrada
             # tratamedo para verificar se ha vagas no rotativo
-            for vagas in vagas_rotativo:
-                # print(vagas)
-                if vagas == range(1):
-                    print('Não ha vagas')
-                else:
-                    tipo_usuario()
-
+            tipo_usuario()
             inicia_app()
 
         elif opc == '2':  # Saida
@@ -59,7 +53,7 @@ def inicia_app():
         elif opc == '6':  # Vagas Rotativo
             # print(vagas_rotativo)
             for i in vagas_rotativo:
-                print(f'{vagas_rotativo.index(i)} - {i}')
+                print(f'Vaga numero: {vagas_rotativo.index(i)} - Placa: {i}')
             inicia_app()
 
         elif opc == '7':  # Sair
@@ -74,6 +68,11 @@ def tipo_usuario():
     Função que trata do tipo de usuario: se é vip ou casual
     :return:
     """
+    for vagas in vagas_rotativo:
+        if len(vagas) > 99:
+            print('Não há vagas')
+            break
+
     user = str(input('Usuario vip?\ns/n:  '))
 
     if user == 's':
@@ -86,7 +85,6 @@ def usuario_rotativo():
     Função que trata do usuario rotativo
     :return:
     """
-    for vagas in vagas_rotativo:
 
     usuario = input('\nDigite a placa:\n')
 
@@ -94,14 +92,19 @@ def usuario_rotativo():
         placa_user = cadastros_rotativo[lista].get('placa')
 
         if usuario == placa_user:
+            print(cadastros_rotativo)
             vagas_rotativo.append(usuario)
             inicia_app()
 
             # Registar a hora de entrada
         elif usuario != placa_user:
+            print(cadastros_rotativo)
+
             print('Placa não encontrada.\n')
             entrada_rotativo()
             vagas_rotativo.append(usuario)
+
+            print(cadastros_rotativo)
             inicia_app()
 
 
@@ -113,7 +116,7 @@ def entrada_rotativo():
         print('Cadastro finalizado.\n')
 
     elif novo == 'n':
-        usuario_rotativo()
+        inicia_app()
 
 
 def cadastrar():
