@@ -33,6 +33,7 @@ def inicia_app():
         if opc == '1':  # Entrada
             # tratamedo para verificar se ha vagas no rotativo
             tipo_usuario()
+
             inicia_app()
 
         elif opc == '2':  # Saida
