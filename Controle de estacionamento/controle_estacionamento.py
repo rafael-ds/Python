@@ -1,18 +1,14 @@
 # Programa de cotrole de estacionamento
 
 vagas_rotativo = []
-cadastros_rotativo = [
-    {'placa': '78r56', 'modelo': 'Corsa', 'cor': 'Preto', 'nome_cliente': 'Rafael'},
-    {'placa': '985t3', 'modelo': 'Fusion', 'cor': 'Verde', 'nome_cliente': 'Edna'}
-]
-
+cadastros_rotativo = []
+historicos = []
 vips = []
 cadastros_vips = []
 
-
 print('==' * 20 + ' Controle de estacionamento ' + '==' * 20 + '\n')
 
-iniciar_app = str(input('Iniciar programar? s/n: '))
+iniciar_app = str(input('Iniciar programa? s/n: '))
 
 
 def inicia_app():
@@ -32,30 +28,45 @@ def inicia_app():
 
         if opc == '1':  # Entrada
             # tratamedo para verificar se ha vagas no rotativo
+            print('Entrada de clientes: ')
             tipo_usuario()
-
             inicia_app()
+            # print(cadastros_rotativo)
 
         elif opc == '2':  # Saida
-            print('ok')
+            print('Saida de clientes: ')
+            saida_rotativo()
             inicia_app()
 
         elif opc == '3':  # Cadastros Vips
             inicia_app()
 
         elif opc == '4':  # Cadastros Rotativo
-            for i in cadastros_rotativo:
-                print(f'{cadastros_rotativo.index(i)} - {i}')
-            inicia_app()
+            print('Lista de cadastros do rotativo: ')
+
+            if not cadastros_rotativo:
+                print('Não a cliente cadastrado')
+                inicia_app()
+            else:
+                for i in cadastros_rotativo:
+                    print(f'Cliente: {i}')
+                inicia_app()
 
         elif opc == '5':  # Vagas Vips
+            print('Lista das vagas vips: ')
+
             print(vagas_rotativo)
 
         elif opc == '6':  # Vagas Rotativo
             # print(vagas_rotativo)
-            for i in vagas_rotativo:
-                print(f'Vaga numero: {vagas_rotativo.index(i)} - Placa: {i}')
-            inicia_app()
+            print('Vagas do rotativo: ')
+            if not vagas_rotativo:
+                print('Não há vagas ocupada! ')
+                inicia_app()
+            else:
+                for i in vagas_rotativo:
+                    print(f'Vaga numero: {vagas_rotativo.index(i)} - Dados: {i}')
+                inicia_app()
 
         elif opc == '7':  # Sair
             print('Saindo do programa.')
@@ -69,16 +80,15 @@ def tipo_usuario():
     Função que trata do tipo de usuario: se é vip ou casual
     :return:
     """
-    for vagas in vagas_rotativo:
-        if len(vagas) > 99:
-            print('Não há vagas')
-            break
 
     user = str(input('Usuario vip?\ns/n:  '))
 
     if user == 's':
-        print('Bem vindo vip!')
-    return usuario_rotativo()
+        print('Bem vindo vip!')  # Logica ainda não programada
+
+    # função usuario rotativo
+    else:
+        usuario_rotativo()
 
 
 def usuario_rotativo():
@@ -86,27 +96,26 @@ def usuario_rotativo():
     Função que trata do usuario rotativo
     :return:
     """
+    for vagas in vagas_rotativo:
+        if len(vagas) > 99:
+            print('Não há vagas')
+            break
 
-    usuario = input('\nDigite a placa:\n')
+    # if not -> Verificando se a lista esta vazia
+    if not cadastros_rotativo:
+        entrada_rotativo()
+    else:
+        placa_user = str(input('Entre com a placa do carro: '))
 
-    for lista in range(0, len(cadastros_rotativo)):
-        placa_user = cadastros_rotativo[lista].get('placa')
+        for cadastros_rot in range(0, len(cadastros_rotativo)):
+            user = cadastros_rotativo[cadastros_rot].get('placa')
 
-        if usuario == placa_user:
-            print(cadastros_rotativo)
-            vagas_rotativo.append(usuario)
-            inicia_app()
-
-            # Registar a hora de entrada
-        elif usuario != placa_user:
-            print(cadastros_rotativo)
-
-            print('Placa não encontrada.\n')
-            entrada_rotativo()
-            vagas_rotativo.append(usuario)
-
-            print(cadastros_rotativo)
-            inicia_app()
+            if user == placa_user:
+                print(f'Cod-Cliente: {cadastros_rot} - {cadastros_rotativo[cadastros_rot]}')
+                vagas_rotativo.append(cadastros_rotativo[cadastros_rot])
+            else:
+                print('Cliente não cadastrado! ')
+                entrada_rotativo()
 
 
 def entrada_rotativo():
@@ -131,8 +140,30 @@ def cadastrar():
     nome_cliente = str(input('Informe o nome do cliente: ').title())
 
     cadastros_rotativo.append({'placa': placa, 'modelo': modelo, 'cor': cor, 'nome_cliente': nome_cliente})
+    vagas_rotativo.append({'placa': placa, 'modelo': modelo, 'cor': cor, 'nome_cliente': nome_cliente})
+
+
+def saida_rotativo():
+    """
+    Função sem retorno que remove da lista vagas_rotativo
+    Adiciona na lista historicos os dados do carro.
+    :return:
+    """
+    if not vagas_rotativo:
+        print(f'Não a carros nas vagas.\n{vagas_rotativo}')
+    else:
+        placa_saida = str(input('Entre com a placa do carro: '))
+
+        for saida in range(0, len(vagas_rotativo)):
+
+            saida_user = vagas_rotativo[saida].get('placa')
+
+            if placa_saida == saida_user:
+
+                historicos.append(vagas_rotativo[saida])
+                vagas_rotativo.remove(vagas_rotativo[saida])
+
+                inicia_app()
 
 
 inicia_app()
-
-
