@@ -11,76 +11,8 @@ cadastros_vips = []
 
 print('==' * 20 + ' Controle de estacionamento ' + '==' * 20 + '\n')
 
+# Inicialização do app
 iniciar_app = str(input('Iniciar programa? s/n: '))
-
-
-def inicia_app():
-    if iniciar_app == 's':
-        # Menu de opção
-        #print('Iniciando...')
-        #time.sleep(.8)
-
-        print('=' * 130)
-        print(' 1 - Entrada |'
-              ' 2 - Saida |'
-              ' 3 - Cadastros Vips |'
-              ' 4 - Cadastros Rotativo |'
-              ' 5 - Vagas Vips |'
-              ' 6 - Vagas Rotativo |'
-              ' 7 - Sair |')
-        print('=' * 130 + '\n')
-
-        opc = str(input('Entre com a opção desejada: '))
-
-        if opc == '1':  # Entrada
-            # tratamedo para verificar se ha vagas no rotativo
-            print('Entrada de clientes: ')
-            tipo_usuario()
-            inicia_app()
-            # print(cadastros_rotativo)
-
-        elif opc == '2':  # Saida
-            print('Saida de clientes: ')
-            saida_rotativo()
-            inicia_app()
-
-        elif opc == '3':  # Cadastros Vips
-            inicia_app()
-
-        elif opc == '4':  # Cadastros Rotativo
-            print('Lista de cadastros do rotativo: ')
-
-            if not cadastros_rotativo:
-                print('Não a cliente cadastrado')
-                inicia_app()
-            else:
-                for i in cadastros_rotativo:
-                    print(f'Cliente: {i}')
-                inicia_app()
-
-        elif opc == '5':  # Vagas Vips
-            print('Lista das vagas vips: ')
-
-            print(vagas_rotativo)
-
-        elif opc == '6':  # Vagas Rotativo
-            # print(vagas_rotativo)
-            print('Vagas do rotativo: ')
-            if not vagas_rotativo:
-                print('Não há vagas ocupada! ')
-                inicia_app()
-            else:
-                for i in vagas_rotativo:
-                    print(f'Vaga numero: {vagas_rotativo.index(i)} - Dados: {i}')
-                inicia_app()
-
-        elif opc == '7':  # Sair
-            sair()
-
-
-
-    elif iniciar_app == 'n':
-        print('Saindo do programa.')
 
 
 def tipo_usuario():
@@ -94,7 +26,7 @@ def tipo_usuario():
     if user == 's':
         print('Bem vindo vip!')  # Logica ainda não programada
 
-    # função usuario rotativo
+    # Chamada da função usuario_rotativo()
     else:
         usuario_rotativo()
 
@@ -104,6 +36,8 @@ def usuario_rotativo():
     Função que trata do usuario rotativo
     :return:
     """
+
+    # Verificação se lista vagas_rotativo é maior 99 itens
     for vagas in vagas_rotativo:
         if len(vagas) > 99:
             return 'Não a vagas'
@@ -111,18 +45,23 @@ def usuario_rotativo():
     # if not -> Verificando se a lista esta vazia
     if not cadastros_rotativo:
         entrada_rotativo()
+
+    # Entranda de cliente
     else:
         placa_user = str(input('Entre com a placa do carro: '))
 
+        # Verificação se a placa do cliente esta no cadastro e
         for cadastros_rot in range(0, len(cadastros_rotativo)):
             user = cadastros_rotativo[cadastros_rot].get('placa')
 
+            # Caso esteja adicionar na vaga.
             if user == placa_user:
                 print(f'Cod-Cliente: {cadastros_rot} - {cadastros_rotativo[cadastros_rot]}')
-                #time.sleep(.5)
                 vagas_rotativo.append(cadastros_rotativo[cadastros_rot])
 
+            # Caso nao esteja fazer cadastro.
             elif user != placa_user:
+                placa = list(filter(lambda u: u['placa'] == placa_user, ))
                 print('Cliente não cadastrado! ')
                 entrada_rotativo()
 
@@ -132,11 +71,9 @@ def entrada_rotativo():
 
     if novo == 's':
         cadastrar()
-        #time.sleep(.5)
         print('Cadastro finalizado.\n')
-
     elif novo == 'n':
-        inicia_app()
+        print('Cancelando...')
 
 
 def cadastrar():
@@ -173,15 +110,66 @@ def saida_rotativo():
                 historicos.append(vagas_rotativo[saida])
                 vagas_rotativo.remove(vagas_rotativo[saida])
 
-                #time.sleep(.5)
-                inicia_app()
-
-
-#def cad_vip():
-
 
 def sair():
     return 'Saindo do programa...'
 
 
-inicia_app()
+# Loop infinito do menu
+while True:
+    if iniciar_app == 's':
+
+        print('=' * 130)
+        print(' 1 - Entrada |'
+              ' 2 - Saida |'
+              ' 3 - Cadastros Vips |'
+              ' 4 - Cadastros Rotativo |'
+              ' 5 - Vagas Vips |'
+              ' 6 - Vagas Rotativo |'
+              ' 7 - Sair |')
+        print('=' * 130 + '\n')
+
+        opc = str(input('Entre com a opção desejada: '))
+
+        if opc == '1':  # Entrada
+            # tratamedo para verificar se ha vagas no rotativo
+            print('Entrada de clientes: ')
+            tipo_usuario()
+
+        elif opc == '2':  # Saida
+            print('Saida de clientes: ')
+            saida_rotativo()
+
+        elif opc == '3':  # Cadastros Vips
+            print('Cadastrar vip: ')
+
+        elif opc == '4':  # Cadastros Rotativo
+            print('Lista de cadastros do rotativo: ')
+
+            if not cadastros_rotativo:
+                print('Não a cliente cadastrado')
+
+            else:
+                for i in cadastros_rotativo:
+                    print(f'Cliente: {i}')
+
+        elif opc == '5':  # Vagas Vips
+            print('Lista das vagas vips: ')
+
+            print(vagas_rotativo)
+
+        elif opc == '6':  # Vagas Rotativo
+            # print(vagas_rotativo)
+            print('Vagas do rotativo: ')
+            if not vagas_rotativo:
+                print('Não há vagas ocupada! ')
+
+            else:
+                for i in vagas_rotativo:
+                    print(f'Vaga numero: {vagas_rotativo.index(i)} - Dados: {i}')
+
+        elif opc == '7':  # Sair
+            sair()
+
+    elif iniciar_app == 'n':
+        break
