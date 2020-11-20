@@ -1,8 +1,11 @@
 # Programa de cotrole de estacionamento
+import time
 
 vagas_rotativo = []
 cadastros_rotativo = []
+
 historicos = []
+
 vips = []
 cadastros_vips = []
 
@@ -14,6 +17,9 @@ iniciar_app = str(input('Iniciar programa? s/n: '))
 def inicia_app():
     if iniciar_app == 's':
         # Menu de opção
+        #print('Iniciando...')
+        #time.sleep(.8)
+
         print('=' * 130)
         print(' 1 - Entrada |'
               ' 2 - Saida |'
@@ -69,7 +75,9 @@ def inicia_app():
                 inicia_app()
 
         elif opc == '7':  # Sair
-            print('Saindo do programa.')
+            sair()
+
+
 
     elif iniciar_app == 'n':
         print('Saindo do programa.')
@@ -98,8 +106,7 @@ def usuario_rotativo():
     """
     for vagas in vagas_rotativo:
         if len(vagas) > 99:
-            print('Não há vagas')
-            break
+            return 'Não a vagas'
 
     # if not -> Verificando se a lista esta vazia
     if not cadastros_rotativo:
@@ -112,8 +119,10 @@ def usuario_rotativo():
 
             if user == placa_user:
                 print(f'Cod-Cliente: {cadastros_rot} - {cadastros_rotativo[cadastros_rot]}')
+                #time.sleep(.5)
                 vagas_rotativo.append(cadastros_rotativo[cadastros_rot])
-            else:
+
+            elif user != placa_user:
                 print('Cliente não cadastrado! ')
                 entrada_rotativo()
 
@@ -123,6 +132,7 @@ def entrada_rotativo():
 
     if novo == 's':
         cadastrar()
+        #time.sleep(.5)
         print('Cadastro finalizado.\n')
 
     elif novo == 'n':
@@ -163,7 +173,15 @@ def saida_rotativo():
                 historicos.append(vagas_rotativo[saida])
                 vagas_rotativo.remove(vagas_rotativo[saida])
 
+                #time.sleep(.5)
                 inicia_app()
+
+
+#def cad_vip():
+
+
+def sair():
+    return 'Saindo do programa...'
 
 
 inicia_app()
