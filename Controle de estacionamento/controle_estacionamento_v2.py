@@ -1,7 +1,6 @@
 cadastro_rotativo = []
 vaga_rotativo = []
 
-
 print('==' * 20 + ' Controle de estacionamento ' + '==' * 20 + '\n')
 
 # Inicialização do app
@@ -22,19 +21,23 @@ def dados_cliente():
 
 
 def saida():
-    placa = str(input('Placa saida: '))
+   """ placa = str(input('Placa saida: '))
 
-    user = list(filter(lambda u: u['placa'] == placa, vaga_rotativo))
-    for i in user:
-        vaga_rotativo.remove(i)
+    print('ok')
 
 
-def entrada():
+
+    user_saida = list(filter(lambda us: us['placa'] == placa, vaga_rotativo))
+    for u in user_saida:
+        vaga_rotativo.remove(u)"""
+
+
+"""def entrada():
     placa = str(input('Placa entrada: '))
 
     user = list(filter(lambda u: u['placa'] == placa, cadastro_rotativo))
     for i in user:
-        vaga_rotativo.append(i)
+        vaga_rotativo.append(i)"""
 
 
 while True:
@@ -51,9 +54,32 @@ while True:
         opc = int(input('Entre com a opção: '))
 
         if opc == 1:
-            dados_cliente()
+            if not cadastro_rotativo:
+                dados_cliente()
+            else:
+                placa_comparacao = str(input('placa comparaçao: '))
+
+                for cad_rot in cadastro_rotativo:
+                    p_user = cadastro_rotativo[cad_rot].get('placa')
+
+                    if placa_comparacao == p_user:
+                        print(p_user)
+                    else:
+                        dados_cliente()
+                        break
+
+                """p_user = list(filter(lambda u: u['placa'] == placa_comparacao, cadastro_rotativo))
+
+                for user in cadastro_rotativo:
+                    vaga_rotativo.append(p_user)
+
+                    if not p_user:
+                        print('Placa nao cadastrada.')
+                        dados_cliente()
+                        break"""
 
         elif opc == 2:
+            print('Saida.')
             saida()
 
         elif opc == 3:
