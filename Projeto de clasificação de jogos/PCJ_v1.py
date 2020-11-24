@@ -1,6 +1,7 @@
 # Mini projeto de catalogo de classificação de jogos
 
 catalogo = []
+lixeira = []
 
 
 # Função que gera os dados em forma de dict e adiciona no catalogo
@@ -9,7 +10,7 @@ def add_itens():
     console = str(input('Console: ').title())
     nota = float(input('Nota dada ao jogo: '))
 
-    dados = {'tilulo': titulo, 'console': console, 'nota': nota}
+    dados = {'titulo': titulo, 'console': console, 'nota': nota}
 
     catalogo.append(dados)
 
@@ -18,11 +19,10 @@ def add_itens():
 # retorna a função add_item()
 def buscar_titulo():
     if not catalogo:
-        print('Ainda não existe itens em seu catalogo. Deseja adicionar algum item? ')
-        add_itens()
+        print('Ainda não existe itens em seu catalogo. ')
     else:
         titulo = str(input('Titulo do jogo: ').title())
-        buscar_t = list(filter(lambda t: t['tilulo'] == titulo, catalogo))
+        buscar_t = list(filter(lambda t: t['titulo'] == titulo, catalogo))
 
         print(buscar_t)
 
@@ -31,8 +31,7 @@ def buscar_titulo():
 # retorna a função add_item()
 def buscar_console():
     if not catalogo:
-        print('Ainda não existe itens em seu catalogo. Deseja adicionar algum item? ')
-        add_itens()
+        print('Ainda não existe itens em seu catalogo. ')
 
     else:
         console = str(input('Console: ').title())
@@ -40,8 +39,8 @@ def buscar_console():
 
         ordem = sorted(buscar_c, key=lambda o: o['nota'], reverse=True)
 
-        for i in ordem:
-            print(i)
+        for listar_console in ordem:
+            print(listar_console)
 
 
 # Função que retorna a busca no catalogo em ordem crescente da classificação
@@ -49,12 +48,11 @@ def busca_crescente():
     if not catalogo:
         print('Ainda não existe itens em seu catalogo. ')
 
-
     else:
-        classisf = sorted(catalogo, key=lambda c: c['nota'], reverse=True)
+        classisf = sorted(catalogo, key=lambda c: c['nota'])
 
-        for i in classisf:
-            print(i)
+        for listar_crescente in classisf:
+            print(listar_crescente)
 
 
 # Função que retorna a busca no catalogo em ordem decrescente da classificação
@@ -63,23 +61,50 @@ def busca_decrescente():
         print('Ainda não existe itens em seu catalogo. ')
 
     else:
-        classf = sorted(catalogo, key=lambda c: c['nota'])
+        classf = sorted(catalogo, key=lambda c: c['nota'], reverse=True)
 
-        for i in classf:
+        for listar_decresc in classf:
+            print(listar_decresc)
+
+
+# Remoção pelo titulo
+def remover_t():
+    if not catalogo:
+        print('Ainda não existe itens em seu catalogo. ')
+    else:
+        # OBS -> .title() necessario. Caso contrario entra em conflito com a buca
+
+        ordem = sorted(catalogo, key=lambda o: o['titulo'])
+        for i in ordem:
             print(i)
+
+        titulo = str(input('Titulo do jogo: ').title())
+
+        rem_item = list(filter(lambda r: r['titulo'] == titulo, catalogo))
+
+        # Loop para iterar com item filtrado adicionando-o a lixeira e removendo do catalogo
+        for i in rem_item:
+            lixeira.append(i)
+            catalogo.remove(i)
+
+
+# Remoção filtrando o titulo pelo console
+def remover_c():
+    print('Remover pelo console')
 
 
 # Menu
 while True:
 
     print('=' * 50 + ' Catalogo de jogos ' + '=' * 59)
-    print('1 - Catalogo de jogos -- '
-          '2 - Busca -- '
-          '3 - Classificação -- '
+    print('1 - Catalogo de jogos <=> '
+          '2 - Busca <=> '
+          '3 - Classificação <=> '
           '4 - Adicionar item ao catalogo \n'
-          '5 - Remover item do catalogo -- ' 
-          '6 - Atulizar catalogo -- '
-          '7 - sair ')
+          '5 - Mover para lixeira <=> ' 
+          '6 - Atulizar catalogo <=> '
+          '7 - Lixeira <=> '
+          '8 - sair ')
     print('=' * 128 + '\n')
 
     opc = str(input('Entre com a opção: '))
@@ -90,7 +115,7 @@ while True:
         if not catalogo:
             print('Ainda não a item no catalogo.')
         else:
-            catal = sorted(catalogo, key=lambda c: c['console'], reverse=True)
+            catal = sorted(catalogo, key=lambda c: c['console'])
             for i in catal:
                 print(i)
 
@@ -129,14 +154,27 @@ while True:
 
     # Remover itens do catalogo
     elif opc == '5':
-        print(' ¨¨¨¨¨ Remover item do catalogo ¨¨¨¨¨ ')
+        print(' ¨¨¨¨¨ Mover para lixeira ¨¨¨¨¨ ')
+        if not catalogo:
+            print('Ainda não a item no catalogo.')
+
+        else:
+            buscar = str(input(' 1 - Buscar por titulos -- 2 Buscar por console: '))
+            if buscar == '1':
+                remover_t()
+
+            else:
+                remover_c()
 
     # Atualizar itens do catalogo
     elif opc == '6':
         print(' ¨¨¨¨¨ Atualizar o catalogo ¨¨¨¨¨ ')
 
-    # sair do programa
     elif opc == '7':
+        print(' ¨¨¨¨¨ Lixeira ¨¨¨¨¨ ')
+
+    # sair do programa
+    elif opc == '8':
         sair = str(input('Deseja sair do programa? s/n: '))
         if sair == 's':
             print('Saido do programa...')
