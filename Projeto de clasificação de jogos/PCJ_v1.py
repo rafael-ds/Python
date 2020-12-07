@@ -78,19 +78,40 @@ def remover_t():
         for i in ordem:
             print(i)
 
-        titulo = str(input('Titulo do jogo: ').title())
-
-        rem_item = list(filter(lambda r: r['titulo'] == titulo, catalogo))
-
-        # Loop para iterar com item filtrado adicionando-o a lixeira e removendo do catalogo
-        for i in rem_item:
-            lixeira.append(i)
-            catalogo.remove(i)
+        lixo()
 
 
 # Remoção filtrando o titulo pelo console
 def remover_c():
-    print('Remover pelo console')
+    if not catalogo:
+        print('Ainda não existe itens em seu catalogo. ')
+    else:
+        # Mostra uma lista apartir dos consoles
+        itens = sorted(catalogo, key=lambda c: c['console'])
+        for i in itens:
+            print(i)
+
+        console = str(input('Entre com o console: ').title())
+
+        # Retorna uma lista com o console descrito
+        res = list(filter(lambda r: r['console'] == console, catalogo))
+        for i in res:
+            print(i)
+
+        lixo()
+
+
+def lixo():
+    """
+    Atraves do titulo enformado tranfere o jogo para lixeira e remover do catalogo
+    :return:
+    """
+    titulo = str(input('Titúlo do jogo: ').title())
+    ret_item = list(filter(lambda i: i['titulo'] == titulo, catalogo))
+
+    for i in ret_item:
+        lixeira.append(i)
+        catalogo.remove(i)
 
 
 # Menu
@@ -170,8 +191,16 @@ while True:
     elif opc == '6':
         print(' ¨¨¨¨¨ Atualizar o catalogo ¨¨¨¨¨ ')
 
+    # Opção que retorna o itens da lixeira com opção de exxlui-lo permanentemente
     elif opc == '7':
         print(' ¨¨¨¨¨ Lixeira ¨¨¨¨¨ ')
+        for i in lixeira:
+            print(i)
+
+        limpar = str(input('Desvazia lixeira: s/n: '))
+
+        if limpar == 's':
+            lixeira.clear()
 
     # sair do programa
     elif opc == '8':
