@@ -17,31 +17,45 @@ def num():
     :return: Não possui retorno
     """
 
-    tentaivas = 0
+    jogadas_erradas = []
+    jogadas = 4
     pontuacao = 100
 
     global com  # chamada global da variavel n para dentro do escopo da função
 
-    while tentaivas < 10:
+    while True:
 
         jogador = int(input('Entre com o numero: '))
 
         if jogador < com:
             pontuacao -= 5
             print(f'Numero errado. Tente um valor maior.\nSua Pontação é {pontuacao}\n')
+            jogadas_erradas.append(1)
+
+            print(f'Você só tem {jogadas} chances')
+            jogadas -= 1
+
+            chances = sum(jogadas_erradas)
+            if chances == 5:
+                print(f'Suas tentativas acabaram. Vecê fez {pontuacao} pontos')
+                break
 
         elif jogador > com:
             pontuacao -= 5
             print(f'Numero errado. Tente um valor menor. Sua Pontação é {pontuacao}\n')
+            jogadas_erradas.append(1)
+
+            print(f'Você só tem {jogadas} chances')
+            jogadas -= 1
+
+            chances = sum(jogadas_erradas)
+            if chances == 5:
+                print(f'Suas tentativas acabaram. Vecê fez {pontuacao} pontos')
+                break
+
         else:
             print(f'Parabéns você acertou o numero! Vecê fez {pontuacao} pontos\n')
             break
-
-        tentaivas += 1
-
-    if tentaivas >= 10:
-        print(f'Suas tentativas acabaram. Vecê fez {pontuacao} pontos')
-        print(f'O numero sortiado era {com}')
 
 
 num()
