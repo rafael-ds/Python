@@ -1,8 +1,6 @@
 # Agenda de contatos
 import time
 
-contatos = []
-
 print('==' * 20 + ' Agenda Pessoal ' + '==' * 20 + '\n')
 acessar = str(input('Deseja acessar sua agenda?\n(s/n):'))
 
@@ -19,16 +17,28 @@ while acessar == 's':
 
     if opc == '1':
         print('Meus contatos:')
-        for i in range(0, len(contatos)):
-            print(contatos[i])
+
+        with open('agenda.txt', 'r') as meus_contatos:
+            print(meus_contatos.read())
 
     elif opc == '2':
-        nome = str(input('Entre com o nome do contato: ').title())
-        tel = int(input('Entre com o telefone do contato: '))
-        email = str(input('Entre com o e-mail do contato: '))
 
-        add_contatos = {'nome': nome, 'tel.': tel, 'email': email}
-        contatos.append(add_contatos)
+        with open('agenda.txt', 'a') as minha_agenda:
+            while True:
+                add = input('Adicionar novo contato? S/N: ')
+
+                if add == 's':
+                    nome = str(input('Entre com o nome do contato: ').title())
+                    tel = int(input('Entre com o telefone do contato: '))
+                    email = str(input('Entre com o e-mail do contato: '))
+
+                    add_contatos = {'nome': nome, 'tel.': tel, 'email': email}
+
+                    minha_agenda.write(str(add_contatos))
+                    minha_agenda.write('\n')
+
+                elif add == 'n':
+                    break
 
         time.sleep(1.5)
         print('Contato adicionado com sucesso! \n')
