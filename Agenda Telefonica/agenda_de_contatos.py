@@ -1,5 +1,8 @@
 # Agenda de contatos
 import time
+import ast
+
+contatos = []
 
 print('==' * 20 + ' Agenda Pessoal ' + '==' * 20 + '\n')
 acessar = str(input('Deseja acessar sua agenda?\n(s/n):'))
@@ -8,20 +11,25 @@ while acessar == 's':
     print('=' * 100)
     print(' 1 - Mostrar contatos.|'
           ' 2 - Add contatos|'
-          ' 3 - Alterar contatos|'
-          ' 4 - Remover contatos|'
-          ' 5 - Sair')
+          ' 3 - Buscar contatos|'
+          ' 4 - Alterar contatos|'
+          ' 5 - Remover contatos|'
+          ' 6 - Sair')
     print('=' * 100 + '\n')
 
     opc = input('Entre com a opção:')
 
     if opc == '1':
-        print('Meus contatos:')
+        print('=' * 5 + 'Meus contatos:' + '=' * 5)
 
         with open('agenda.txt', 'r') as meus_contatos:
-            print(meus_contatos.read())
+            # Transformando 'str' para um iteravel
+            buscar = ast.literal_eval(meus_contatos.read())
+            for i in buscar:
+                print(i)
 
     elif opc == '2':
+        print('=' * 5 + 'Adicionar contato' + '=' * 5)
 
         with open('agenda.txt', 'a') as minha_agenda:
             while True:
@@ -34,50 +42,51 @@ while acessar == 's':
 
                     add_contatos = {'nome': nome, 'tel.': tel, 'email': email}
 
-                    minha_agenda.write(str(add_contatos))
-                    minha_agenda.write('\n')
+                    # OBS: por ser um 'str' do formato dict() ouve a necessidade de implementar " + ',' "
+                    # modificando para tupla
+                    minha_agenda.write(str(add_contatos) + ', ')
+
+                    time.sleep(1.5)
+                    print('...')
+                    print('Contato adicionado com sucesso! \n')
 
                 elif add == 'n':
                     break
 
-        time.sleep(1.5)
-        print('Contato adicionado com sucesso! \n')
-
+    # Buscando contatos
     elif opc == '3':
-        # Pecorre a lista trazendo a posição do index e o elemento
-        for pos in contatos:
-            print(f'{contatos.index(pos)}: {pos}')
+        print('=' * 5 + 'Buscar contato' + '=' * 5)
 
-        posicao = int(input('\nEntre com a posição do contato:\n '))
-        print(f'{posicao}: {contatos[posicao]}')
+        with open('agenda.txt', 'r') as contato:
+            # Transformando 'str' para um iteravel
+            # OBS: por ser um 'str' do formato dict() ouve a necessidade de implementar " + ',' " modificando para tupla
+            dados_dic = ast.literal_eval(contato.read())
 
-        alterar = str(input('Deseja alterar esse contato? s/n:\n '))
+            nome_contato = str(input('Entre com o nome do contato: ').title())
 
-        if alterar == 's':
-            nome = str(input('Entre com o nome do contato: ').title())
-            tel = int(input('Entre com o telefone do contato: '))
-            email = str(input('Entre com o e-mail do contato: '))
+            buscar = list(filter(lambda b: b['nome'] == nome_contato, dados_dic))
+            print(buscar)
 
-            contatos[posicao] = {'nome': nome, 'tel.': tel, 'E-mail': email}  # altera o contato na posição escolida
-            time.sleep(1.2)
-            print('Contato atualizado com sucesso!\n')
-
+    # Alterando contatos
     elif opc == '4':
-        # Erro solucionado com a chamada do del
-        for pos in contatos:
-            print(f'{contatos.index(pos)}: {pos}')
+        with open('agenda.txt', 'r') as alterar:
+            alt_dados = ast.literal_eval(alterar.read())
 
-        posicao = int(input('Entre com a posição do contato: '))
+            nome_contato = str(input('Entre com o nome do contato: ').title())
+            buscar = list(filter(lambda b: b['nome'] == nome_contato, alt_dados))
 
-        alterar = str(input('Deseja realmente excluir esse contato? '))
+            print(buscar[0])
+            alt_opc = str(input(f'Deseja alterar o contato? \nS/N:  '))
 
-        if alterar == 's':
-            for i in contatos:
-                del contatos[posicao]
-            print(f'{contatos}\nContatos excluido com sucesso!')
+            if alt_opc == 's':
+                with open('agenda.txt', 'a') as alterando:
+                    print('Opção ainda não disponivel')
+
+    elif opc == '5':
+        print('Opção não disponivel')
 
     else:
-        if opc == '5':
+        if opc == '6':
             sair = str(input('Desaja sair da agenda? (s/n): '))
 
             if sair == 's':
