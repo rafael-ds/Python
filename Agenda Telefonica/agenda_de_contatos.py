@@ -69,26 +69,23 @@ while acessar == 's':
 
     # Alterando contatos
     elif opc == '4':
-        with open('agenda.txt', 'r') as alterar:
-            alt_dados = ast.literal_eval(alterar.read())
+        with open('agenda.txt', 'r') as dados:
+            alt_dados = ast.literal_eval(dados.read())
+            contatos.append(alt_dados)
 
-            nome_contato = str(input('Entre com o nome do contato: ').title())
-            buscar = list(filter(lambda b: b['nome'] == nome_contato, alt_dados))
-            print(buscar)
+        nome_contato = str(input('Entre com o nome do contato: ').title())
 
-            alt_opc = str(input(f'Deseja alterar o contato? \nS/N:  '))
+        for i in contatos:
+            item = list(filter(lambda c: c['nome'], i))
+            print(f'1 -> Item {item}')
+            print(f'2 -> Item {type(item)}')
+            print(f'2 -> Item {len(item)}')
 
-            if alt_opc == 's':
+            """del item[]"""
 
-                contatos.append(alt_dados)
+            print(f'1 -> Item {item}')
+            print(f'2 -> Item {len(item)}')
 
-                for i in contatos:
-                    # print(i)
-
-                    # transformando a tupla (buscar) em lista
-                    valor = list(filter(lambda v: v['nome'], i))
-
-                    print(valor[i])
 
     elif opc == '5':
         print('Opção não disponivel')
