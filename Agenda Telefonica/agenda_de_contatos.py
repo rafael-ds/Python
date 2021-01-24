@@ -46,8 +46,8 @@ while acessar == 's':
                     # modificando para tupla
                     minha_agenda.write(str(add_contatos) + ', ')
 
-                    time.sleep(1.5)
                     print('...')
+                    time.sleep(1.5)
                     print('Contato adicionado com sucesso! \n')
 
                 elif add == 'n':
@@ -74,13 +74,21 @@ while acessar == 's':
 
             nome_contato = str(input('Entre com o nome do contato: ').title())
             buscar = list(filter(lambda b: b['nome'] == nome_contato, alt_dados))
+            print(buscar)
 
-            print(buscar[0])
             alt_opc = str(input(f'Deseja alterar o contato? \nS/N:  '))
 
             if alt_opc == 's':
-                with open('agenda.txt', 'a') as alterando:
-                    print('Opção ainda não disponivel')
+
+                contatos.append(alt_dados)
+
+                for i in contatos:
+                    # print(i)
+
+                    # transformando a tupla (buscar) em lista
+                    valor = list(filter(lambda v: v['nome'], i))
+
+                    print(valor[i])
 
     elif opc == '5':
         print('Opção não disponivel')
