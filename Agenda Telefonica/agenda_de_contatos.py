@@ -3,6 +3,20 @@ import time
 import ast
 
 contatos = []
+temp = []
+cast = []
+
+lixeira = []
+
+
+# Classe que contem o medoto para instanciar o objeto
+class Agenda:
+
+    def __init__(self, nome, telefone, email):
+        self.nome = nome
+        self.telefone = telefone
+        self.email = email
+
 
 print('==' * 20 + ' Agenda Pessoal ' + '==' * 20 + '\n')
 acessar = str(input('Deseja acessar sua agenda?\n(s/n):'))
@@ -31,27 +45,26 @@ while acessar == 's':
     elif opc == '2':
         print('=' * 5 + 'Adicionar contato' + '=' * 5)
 
-        with open('agenda.txt', 'a') as minha_agenda:
-            while True:
-                add = input('Adicionar novo contato? S/N: ')
+        while True:
+            add = input('Adicionar novo contato? S/N: ')
 
-                if add == 's':
-                    nome = str(input('Entre com o nome do contato: ').title())
-                    tel = int(input('Entre com o telefone do contato: '))
-                    email = str(input('Entre com o e-mail do contato: '))
+            if add == 's':
+                nome_contato = input('Insira o nome do contato: ')
+                tel = input('Insira o telefone do contato: ')
+                e_mail = input('Insira o email do contato: ')
 
-                    add_contatos = {'nome': nome, 'tel.': tel, 'email': email}
+                user = Agenda(nome_contato, tel, e_mail)
 
-                    # OBS: por ser um 'str' do formato dict() ouve a necessidade de implementar " + ',' "
-                    # modificando para tupla
-                    minha_agenda.write(str(add_contatos) + ', ')
+                contatos.append([user.nome])
+                contatos.append([user.telefone])
+                contatos.append([user.email])
 
-                    print('...')
-                    time.sleep(1.5)
-                    print('Contato adicionado com sucesso! \n')
+                with open('agenda.txt', 'a') as guardar:
+                    guardar.write(str(contatos))
+                print(contatos)
 
-                elif add == 'n':
-                    break
+            elif add == 'n':
+                break
 
     # Buscando contatos
     elif opc == '3':
@@ -69,26 +82,67 @@ while acessar == 's':
 
     # Alterando contatos
     elif opc == '4':
-        with open('agenda.txt', 'r') as dados:
-            alt_dados = ast.literal_eval(dados.read())
-            contatos.append(alt_dados)
+        with open('agenda.txt', 'r') as abrir:
+            dados = ast.literal_eval(abrir.read())
+            temp.append(dados)
 
-        nome_contato = str(input('Entre com o nome do contato: ').title())
+        for i in temp:
+            for n in i:
+                cast.append(n)
 
-        for i in contatos:
-            item = list(filter(lambda c: c['nome'], i))
-            print(f'1 -> Item {item}')
-            print(f'2 -> Item {type(item)}')
-            print(f'2 -> Item {len(item)}')
+        nome = input('Informe o nome do contato: ')
+        for i in cast:
+            if nome == i[0]:
+                print(i)
+                excluir = input('Deseja excluir esse contato? S/N: ')
+                if excluir == 's':
+                    dado = i
+                    lixeira.append(dado)
+                    cast.remove(i)
+        with open('agenda.txt', 'w') as atulizar:
+            atulizar.write(str(cast))
 
-            """del item[]"""
+        print('==' * 100 + 'Prença os dadoa para atualizar seu contato' + '==' * 100)
+        nome = input('Insira o nome do contato: ')
+        tel = input('Insira o telefone do contato: ')
+        e_mail = input('Insira o e-mail do contato: ')
 
-            print(f'1 -> Item {item}')
-            print(f'2 -> Item {len(item)}')
+        user = Agenda(nome, tel, e_mail)
 
+        contatos.append(user.nome)
+        contatos.append(user.telefone)
+        contatos.append(user.email)
+
+        with open('agenda.txt', 'a') as guardar:
+            guardar.write(str(contatos) + ',')
 
     elif opc == '5':
-        print('Opção não disponivel')
+        with open('agenda.txt', 'r') as abrir:
+            dados = ast.literal_eval(abrir.read())
+            temp.append(dados)
+
+        for i in temp:
+            for n in i:
+                cast.append(n)
+
+        nome = input('Informe o nome do contato: ')
+        for i in cast:
+            if nome == i[0]:
+                print(i)
+                excluir = input('Deseja excluir esse contato? S/N: ')
+                if excluir == 's':
+                    dado = i
+                    lixeira.append(dado)
+                    cast.remove(i)
+                    print('Removendo contato...')
+                    time.sleep(1.5)
+                    print('Contato removido com sucesso... ')
+                    break
+                elif excluir == 'n':
+                    break
+
+        with open('agenda.txt', 'w') as atulizar:
+            atulizar.write(str(cast))
 
     else:
         if opc == '6':
