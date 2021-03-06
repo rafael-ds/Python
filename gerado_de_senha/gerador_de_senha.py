@@ -1,5 +1,6 @@
 import string
 import csv
+from time import sleep
 from random import choice
 
 letra = string.ascii_letters
@@ -32,6 +33,7 @@ def gerar_senha():
 
         while True:
             entrada = input('Digite o nome da instituição ou (1) Para sair: - ').title()
+
             dado = Dados(entrada)
             if entrada != '1':
                 # Randomização dos elementos
@@ -42,6 +44,9 @@ def gerar_senha():
                     cont += 1
 
                 soldar = ''.join(temp)  # Concatenando as strings da lista temp
+                print('Gerando senha...')
+                sleep(0.8)
+                print(f'Senha para {entrada} gerada com sucesso! ')
                 escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
                 del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
             else:
@@ -55,14 +60,50 @@ def ver_senhas():
             print(linhas)
 
 
+def for_busca():
+
+
 def buscar_senha():
-    with open('gerador.csv', 'r', newline='', encoding='utf-8') as abrir:
+    with open('gerador.csv', 'r', encoding='utf-8', newline='') as abrir:
         ler = csv.reader(abrir)
         buscar = input('Digite o nome da instituição: \n').title()
         for i in ler:
             if i[0] == buscar:
-                print('Instituição | Senha')
-                print(i)
+                print('n')
+                break
+
+            else:
+                print(f'{buscar} não se encontra na lista.'
+                      f' Deseja gerar uma senha para {buscar}? ')
+
+                s_n = input('s/n: ')
+                if s_n == 's':
+                    with open('gerador.csv', 'a', encoding='utf-8', newline='') as gerar:
+                        cabecalho = ['Instituição', 'Senha']
+                        escrever = csv.DictWriter(gerar, fieldnames=cabecalho)
+                        if gerar.tell() == 0:  # Verifica se existe algo escrito na primeira linha
+                            escrever.writeheader()
+
+                        # Randomização dos elementos
+                        dado = Dados(buscar)
+                        cont = 0
+                        while cont < 12:
+                            randomizar = choice(concat)
+                            temp.append(randomizar)
+                            cont += 1
+
+                        soldar = ''.join(temp)  # Concatenando as strings da lista temp
+                        print('Gerando senha...')
+                        sleep(0.8)
+                        print(f'Senha para {buscar} gerada com sucesso! ')
+                        escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
+                        del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
+                        break
+
+                elif s_n == 'n':
+                    break
+
+
 
 
 # Menu
