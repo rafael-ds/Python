@@ -10,11 +10,20 @@ concat = letra + numeros + caracteres
 temp = []
 
 
+class Dados:
+    def __init__(self, inst):
+        self.__inst = inst
+
+    def inst(self):
+        return f'{self.__inst}'
+
+
 def gerar_senha():
     """
     Função geradora de senha
     :return:
     """
+
     with open('gerador.csv', 'a', encoding='utf-8', newline='') as gerar:
         cabecalho = ['Instituição', 'Senha']
         escrever = csv.DictWriter(gerar, fieldnames=cabecalho)
@@ -23,16 +32,17 @@ def gerar_senha():
 
         while True:
             entrada = input('Digite o nome da instituição ou (1) Para sair: - ').title()
+            dado = Dados(entrada)
             if entrada != '1':
                 # Randomização dos elementos
                 cont = 0
-                while cont < 8:
+                while cont < 12:
                     randomizar = choice(concat)
                     temp.append(randomizar)
                     cont += 1
 
-                gerador = ''.join(temp)  # Concatenando as strings da lista temp
-                escrever.writerow({'Instituição': entrada, 'Senha': gerador})
+                soldar = ''.join(temp)  # Concatenando as strings da lista temp
+                escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
                 del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
             else:
                 break
