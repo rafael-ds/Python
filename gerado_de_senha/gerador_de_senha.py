@@ -54,23 +54,30 @@ def gerar_senha():
 
 
 def ver_senhas():
+    """
+    Função que mosta as intituições e senhas
+    :return:
+    """
     with open('gerador.csv', 'r', newline='', encoding='utf-8') as abrir:
         ler = csv.DictReader(abrir)
         for linhas in ler:
             print(linhas)
 
 
-def for_busca():
-
-
-def buscar_senha():
+def senha_true():
+    """
+    Função que abre o arquivo e retorna um busca do usuario.
+    Caso a busca seja False, o mesmo podera adicionar-lo a lista.
+    :return:
+    """
     with open('gerador.csv', 'r', encoding='utf-8', newline='') as abrir:
-        ler = csv.reader(abrir)
+        ler = csv.DictReader(abrir)
         buscar = input('Digite o nome da instituição: \n').title()
-        for i in ler:
-            if i[0] == buscar:
-                print('n')
-                break
+        itens = list(filter(lambda x: x['Instituição'] == buscar, ler))
+
+        for i in itens:
+            if i:
+                print(i)
 
             else:
                 print(f'{buscar} não se encontra na lista.'
@@ -104,8 +111,6 @@ def buscar_senha():
                     break
 
 
-
-
 # Menu
 while True:
     print('=' * 25 + ' GERADOR DE SENHA ' + '=' * 25)
@@ -123,7 +128,7 @@ while True:
         ver_senhas()
 
     elif opc == '3':
-        buscar_senha()
+        senha_true()
 
     elif opc == '4':
         print('saindo do gerador senha')
