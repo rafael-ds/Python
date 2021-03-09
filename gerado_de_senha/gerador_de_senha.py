@@ -9,6 +9,7 @@ caracteres = '_@$&'
 
 concat = letra + numeros + caracteres
 temp = []
+lixeira = []
 
 
 class Dados:
@@ -19,7 +20,7 @@ class Dados:
         return f'{self.__inst}'
 
 
-def gerar_senha():
+def senha_auto():
     """
     Função geradora de senha
     :return:
@@ -53,6 +54,23 @@ def gerar_senha():
                 break
 
 
+def senha_manual():
+    with open('gerador.csv', 'a', encoding='utf-8', newline='') as grava:
+        cabecalho = ['Instituição', 'Senha']
+        escrever = csv.DictWriter(grava, fieldnames=cabecalho)
+        if grava.tell() == 0:
+            escrever.writeheader()
+
+        while True:
+            opcao = input('Infomer o nome da  instituição ou (1) para sair: ').title()
+
+            if opcao == '1':
+                break
+            else:
+                senha = input('Informer a senha: ')
+                escrever.writerow({'Instituição': opcao, 'Senha': senha})
+
+
 def ver_senhas():
     """
     Função que mosta as intituições e senhas
@@ -64,7 +82,7 @@ def ver_senhas():
             print(linhas)
 
 
-def busca():
+def buscar():
     """
     Função que abre o arquivo e retorna um busca do usuario.
     Caso a busca seja False, o mesmo podera adicionar-lo a lista.
@@ -76,7 +94,8 @@ def busca():
         item = list(filter(lambda x: x['Instituição'] == buscar, ler))
 
         if item:
-            print(item)
+            for i in item:
+                print(i)
         else:
             print(f'{buscar} não se encontra na lista.'
                   f' Deseja gerar uma senha para {buscar}? ')
@@ -104,26 +123,51 @@ def busca():
                     escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
                     del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
 
+
+def excluir():
+    with open('gerador.csv', 'r+', newline='', encoding='utf-8') as abrir:
+        ler = csv.DictReader(abrir)
+        for i in ler:
+            lixeira.append(i)
+
+
 # Menu
 while True:
     print('=' * 25 + ' GERADOR DE SENHA ' + '=' * 25)
-    print('1 - Gerar senha | '
-          '2 - Ver senhas | '
-          '3 - Buscar por senha | '
-          '4 - Sair')
+    print('1 - Gerar senha automatica | '
+          '2 - Gera senha manual | '
+          '3 - Ver senhas | '
+          '4 - Buscar por senha | '
+          '5 - Editar Instituição | '
+          '6 - Excuir Instituição | '
+          '7 - Sair')
 
     opc = input('Entre com a opção desejada: ')
 
     if opc == '1':
-        gerar_senha()
+        print('=' * 10 + ' Gerando senha automatimente ' + '=' * 10)
+        senha_auto()
 
     elif opc == '2':
-        ver_senhas()
+        print('=' * 10 + ' Gerando senha manualmente ' + '=' * 10)
+        senha_manual()
 
     elif opc == '3':
-        busca()
+        print('=' * 10 + ' Suas senhas ' + '=' * 10)
+        ver_senhas()
 
     elif opc == '4':
+        print('=' * 10 + ' Buscar ' + '=' * 10)
+        buscar()
+
+    elif opc == '5':
+        print('=' * 10 + ' Editar Instituição ' + '=' * 10)
+
+    elif opc == '6':
+        print('=' * 10 + ' Excluir Instituição ' + '=' * 10)
+        excluir()
+
+    elif opc == '7':
         print('saindo do gerador senha... ')
         sleep(0.8)
         break
