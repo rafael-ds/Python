@@ -64,7 +64,7 @@ def ver_senhas():
             print(linhas)
 
 
-def senha_true():
+def busca():
     """
     Função que abre o arquivo e retorna um busca do usuario.
     Caso a busca seja False, o mesmo podera adicionar-lo a lista.
@@ -73,43 +73,36 @@ def senha_true():
     with open('gerador.csv', 'r', encoding='utf-8', newline='') as abrir:
         ler = csv.DictReader(abrir)
         buscar = input('Digite o nome da instituição: \n').title()
-        itens = list(filter(lambda x: x['Instituição'] == buscar, ler))
+        item = list(filter(lambda x: x['Instituição'] == buscar, ler))
 
-        for i in itens:
-            if i:
-                print(i)
+        if item:
+            print(item)
+        else:
+            print(f'{buscar} não se encontra na lista.'
+                  f' Deseja gerar uma senha para {buscar}? ')
 
-            else:
-                print(f'{buscar} não se encontra na lista.'
-                      f' Deseja gerar uma senha para {buscar}? ')
+            s_n = input('s/n: ')
+            if s_n == 's':
+                with open('gerador.csv', 'a', encoding='utf-8', newline='') as gerar:
+                    cabecalho = ['Instituição', 'Senha']
+                    escrever = csv.DictWriter(gerar, fieldnames=cabecalho)
+                    if gerar.tell() == 0:  # Verifica se existe algo escrito na primeira linha
+                        escrever.writeheader()
 
-                s_n = input('s/n: ')
-                if s_n == 's':
-                    with open('gerador.csv', 'a', encoding='utf-8', newline='') as gerar:
-                        cabecalho = ['Instituição', 'Senha']
-                        escrever = csv.DictWriter(gerar, fieldnames=cabecalho)
-                        if gerar.tell() == 0:  # Verifica se existe algo escrito na primeira linha
-                            escrever.writeheader()
+                    # Randomização dos elementos
+                    dado = Dados(buscar)
+                    cont = 0
+                    while cont < 12:
+                        randomizar = choice(concat)
+                        temp.append(randomizar)
+                        cont += 1
 
-                        # Randomização dos elementos
-                        dado = Dados(buscar)
-                        cont = 0
-                        while cont < 12:
-                            randomizar = choice(concat)
-                            temp.append(randomizar)
-                            cont += 1
-
-                        soldar = ''.join(temp)  # Concatenando as strings da lista temp
-                        print('Gerando senha...')
-                        sleep(0.8)
-                        print(f'Senha para {buscar} gerada com sucesso! ')
-                        escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
-                        del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
-                        break
-
-                elif s_n == 'n':
-                    break
-
+                    soldar = ''.join(temp)  # Concatenando as strings da lista temp
+                    print('Gerando senha...')
+                    sleep(0.8)
+                    print(f'Senha para {buscar} gerada com sucesso! ')
+                    escrever.writerow({'Instituição': dado.inst(), 'Senha': soldar})
+                    del temp[:]  # Limpando a lista para qua não haja concatecação na gravação
 
 # Menu
 while True:
@@ -128,9 +121,10 @@ while True:
         ver_senhas()
 
     elif opc == '3':
-        senha_true()
+        busca()
 
     elif opc == '4':
-        print('saindo do gerador senha')
+        print('saindo do gerador senha... ')
+        sleep(0.8)
         break
 
